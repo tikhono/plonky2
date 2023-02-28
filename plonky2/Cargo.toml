@@ -24,7 +24,7 @@ hashbrown = { version = "0.12.3", default-features = false, features = ["ahash",
 itertools = { version = "0.10.0", default-features = false }
 keccak-hash = { version = "0.8.0", default-features = false }
 log = { version = "0.4.14", default-features = false }
-maybe_rayon = { path = "../maybe_rayon", default-features = false }
+plonky2_maybe_rayon = { path = "../maybe_rayon", default-features = false }
 num = { version = "0.4", default-features = false, features = ["rand"] }
 plonky2_field = { path = "../field", default-features = false }
 plonky2_util = { path = "../util", default-features = false }
