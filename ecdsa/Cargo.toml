@@ -6,7 +6,7 @@ license = "MIT OR Apache-2.0"
 edition = "2021"
 
 [features]
-parallel = ["plonky2_maybe_rayon/parallel", "plonky2/parallel"]
+parallel = ["maybe_rayon/parallel", "plonky2/parallel"]
 
 [dependencies]
 anyhow = { version = "1.0.40", default-features = false }
