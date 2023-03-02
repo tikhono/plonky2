@@ -2,6 +2,7 @@ use alloc::vec;
 use alloc::vec::Vec;
 use core::fmt::Debug;
 use core::marker::PhantomData;
+use dyn_clonable::*;
 
 use crate::field::extension::Extendable;
 use crate::field::types::Field;
@@ -97,7 +98,8 @@ pub(crate) fn generate_partial_witness<
 }
 
 /// A generator participates in the generation of the witness.
-pub trait WitnessGenerator<F: Field>: 'static + Send + Sync + Debug {
+#[clonable]
+pub trait WitnessGenerator<F: Field>: 'static + Send + Sync + Debug + Clone{
     /// Targets to be "watched" by this generator. Whenever a target in the watch list is populated,
     /// the generator will be queued to run.
     fn watch_list(&self) -> Vec<Target>;
@@ -173,13 +175,13 @@ pub trait SimpleGenerator<F: Field>: 'static + Send + Sync + Debug {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct SimpleGeneratorAdapter<F: Field, SG: SimpleGenerator<F> + ?Sized> {
     _phantom: PhantomData<F>,
     inner: SG,
 }
 
-impl<F: Field, SG: SimpleGenerator<F>> WitnessGenerator<F> for SimpleGeneratorAdapter<F, SG> {
+impl<F: Field, SG: SimpleGenerator<F> + Clone> WitnessGenerator<F> for SimpleGeneratorAdapter<F, SG> {
     fn watch_list(&self) -> Vec<Target> {
         self.inner.dependencies()
     }

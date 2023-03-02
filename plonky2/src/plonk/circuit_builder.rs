@@ -370,7 +370,7 @@ impl<F: RichField + Extendable<D>, const D: usize> CircuitBuilder<F, D> {
         self.generators.extend(generators);
     }
 
-    pub fn add_simple_generator<G: SimpleGenerator<F>>(&mut self, generator: G) {
+    pub fn add_simple_generator<G: SimpleGenerator<F> + std::clone::Clone>(&mut self, generator: G) {
         self.generators.push(Box::new(generator.adapter()));
     }
 
