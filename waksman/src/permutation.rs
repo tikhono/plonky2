@@ -332,7 +332,7 @@ fn route<F: Field>(
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 struct PermutationGenerator<F: Field> {
     a: Vec<Vec<Target>>,
     b: Vec<Vec<Target>>,

@@ -493,7 +493,7 @@ impl<F: RichField + Extendable<D>, const D: usize> CircuitBuilder<F, D> {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 struct QuotientGeneratorExtension<const D: usize> {
     numerator: ExtensionTarget<D>,
     denominator: ExtensionTarget<D>,

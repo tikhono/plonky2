@@ -347,7 +347,7 @@ impl<F: RichField + Extendable<D>, const D: usize> PackedEvaluableBase<F, D>
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 struct AssertLessThanGenerator<F: RichField + Extendable<D>, const D: usize> {
     row: usize,
     gate: AssertLessThanGate<F, D>,
